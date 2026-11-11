@@ -1,0 +1,122 @@
+{
+  "name": "riteway",
+  "version": "9.3.0",
+  "description": "Unit tests that always supply a good bug report when they fail.",
+  "type": "module",
+  "main": "source/riteway.js",
+  "module": "source/riteway.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./source/riteway.js",
+      "types": "./index.d.ts"
+    },
+    "./vitest": {
+      "import": "./source/vitest.js",
+      "types": "./vitest.d.ts"
+    },
+    "./bun": {
+      "import": "./source/bun.js",
+      "types": "./bun.d.ts"
+    },
+    "./match": {
+      "import": "./source/match.js",
+      "types": "./match.d.ts"
+    },
+    "./render": {
+      "import": "./source/render-component.js",
+      "types": "./render-component.d.ts"
+    },
+    "./render-component": {
+      "import": "./source/render-component.js",
+      "types": "./render-component.d.ts"
+    },
+    "./esm/riteway.js": {
+      "import": "./source/riteway.js",
+      "types": "./index.d.ts"
+    },
+    "./esm/index.js": {
+      "import": "./source/riteway.js",
+      "types": "./index.d.ts"
+    },
+    "./esm/match.js": {
+      "import": "./source/match.js",
+      "types": "./match.d.ts"
+    },
+    "./esm/render.js": {
+      "import": "./source/render-component.js",
+      "types": "./render-component.d.ts"
+    },
+    "./esm/render-component.js": {
+      "import": "./source/render-component.js",
+      "types": "./render-component.d.ts"
+    },
+    "./esm/vitest.js": {
+      "import": "./source/vitest.js",
+      "types": "./vitest.d.ts"
+    },
+    "./esm/test.js": {
+      "import": "./source/test.js"
+    },
+    "./esm/match-test.js": {
+      "import": "./source/match-test.js"
+    },
+    "./esm/vitest.test.jsx": {
+      "import": "./source/vitest.test.jsx"
+    }
+  },
+  "bin": {
+    "riteway": "bin/riteway.js"
+  },
+  "scripts": {
+    "lint": "eslint source && echo 'Lint complete.'",
+    "lint-fix": "eslint --fix source && eslint --fix ./*.js",
+    "typecheck": "npx -p typescript tsc --esModuleInterop --rootDir . source/test.js --allowJs --checkJs --noEmit --lib es6 --jsx react --skipLibCheck && npx -p typescript tsc index.d.ts --noEmit --skipLibCheck && echo 'TypeScript check complete.'",
+    "ts": "npm run -s typecheck",
+    "test": "node source/test.js && vitest run",
+    "test:e2e": "vitest run --config vitest.config.e2e.js",
+    "esm": "cp source/*.js esm/ && cp source/*.jsx esm/ && cp esm/riteway.js esm/index.js && echo 'esm complete.'",
+    "watch": "watch 'clear && npm run -s test | tap-nirvana && npm run -s lint && npm run -s typecheck && npm run -s esm' source",
+    "precommit": "npm run -s test && npm run -s lint-fix && npm run -s typecheck",
+    "update": "updtr",
+    "release": "node release.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericelliott/riteway.git"
+  },
+  "author": "Eric Elliott",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ericelliott/riteway/issues"
+  },
+  "homepage": "https://github.com/ericelliott/riteway#readme",
+  "devDependencies": {
+    "@types/cheerio": "^1.0.0",
+    "@types/node": "^24.7.0",
+    "@types/react": "^19.2.2",
+    "eslint": "^9.37.0",
+    "eslint-plugin-react": "^7.37.5",
+    "react": "^19.2.0",
+    "release-it": "^19.0.5",
+    "tap-nirvana": "1.1.0",
+    "typescript": "^5.9.3",
+    "updtr": "4.1.0",
+    "watch": "^1.0.2"
+  },
+  "dependencies": {
+    "@paralleldrive/cuid2": "^3.3.0",
+    "cheerio": "1.2.0",
+    "dotignore": "^0.1.2",
+    "error-causes": "^3.0.2",
+    "esm": "3.2.25",
+    "glob": "^11.0.3",
+    "minimist": "^1.2.8",
+    "open": "^11.0.0",
+    "react-dom": "^19.2.0",
+    "resolve": "^1.22.10",
+    "tape": "^5.9.0",
+    "vitest": "^3.2.4",
+    "zod": "^4.3.6"
+  }
+}
